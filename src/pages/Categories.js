@@ -1,16 +1,14 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkStatus } from '../redux/categories/categoriesSlice';
+const STATUS_CHECK = 'STATUS_CHECK';
 
-const Categories = () => {
-  const res = useSelector((state) => state.categories);
-  const dispatch = useDispatch();
-  return (
-    <div className="categories">
-      <span>{res}</span>
-      <button type="button" onClick={() => dispatch(checkStatus())}>Check Status</button>
-    </div>
-  );
+const categoryReducer = (state = [], action) => {
+  switch (action.type) {
+    case STATUS_CHECK:
+      return 'Under construction';
+    default:
+      return state;
+  }
 };
 
-export default Categories;
+export const checkStatus = () => ({ type: STATUS_CHECK });
+
+export default categoryReducer;
